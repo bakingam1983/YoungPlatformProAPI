@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <Folder Include="misc\" />
+    <Folder Include="Funding\" />
+    <Folder Include="Orders\" />
   </ItemGroup>
 
 </Project>

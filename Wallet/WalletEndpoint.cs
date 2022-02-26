@@ -3,26 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace YoungPlatformAPILib.Wallet
 {
 
     public static class WalletEndpoint
     {
-        public static List<WalletBalanceResponseItem> GetWalletsBalances(APIClient cli)
+        public static List<WalletBalanceItem> GetWalletsBalances(APIClient cli)
         {
-            DateTime data = DateTime.Now;
-            var unixTime = ((DateTimeOffset)data).ToUnixTimeSeconds();
-            //Console.WriteLine(unixTime);
-            string body = "{";
-            body += @$"""timestamp"": {unixTime},";
-            body += @$"""recvWindow"": 10";
-            body += "}";
+            string body=cli.GetBodyRequest();
             var cleanbody = cli.jsonToHMACBodyConverter(body);
-            //Console.WriteLine(cleanbody);
             var hmac = cli.ComputeHMAC(cleanbody);
-            //Console.WriteLine(hmac);
-
+          
             var client = new RestClient(cli.APIEndPoint + "balances");
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
@@ -33,10 +26,10 @@ namespace YoungPlatformAPILib.Wallet
             request.AddParameter("application/json", body, ParameterType.RequestBody);
             IRestResponse response = client.Execute(request);
             //Console.WriteLine(response.Content);
-            List<WalletBalanceResponseItem> resp = new List<WalletBalanceResponseItem>();
+            List<WalletBalanceItem> resp = new List<WalletBalanceItem>();
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                resp = Newtonsoft.Json.JsonConvert.DeserializeObject<List<WalletBalanceResponseItem>>(response.Content);
+                resp = JsonConvert.DeserializeObject<List<WalletBalanceItem>>(response.Content);
             }
 
             if (!(resp == null))

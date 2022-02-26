@@ -5,18 +5,7 @@ using Newtonsoft.Json;
 
 namespace YoungPlatformAPILib
 {
-    
-    public class WalletBalanceResponse
-    {
-        public List<WalletBalanceResponseItem> Items { get; set; }
-
-        public WalletBalanceResponse()
-        {
-            Items = new List<WalletBalanceResponseItem>();
-        }
-    }
-
-    public class WalletBalanceResponseItem
+    public class WalletBalanceItem
     {
         [JsonProperty("symbol")]
         public string Symbol { get; set; }
@@ -27,9 +16,5 @@ namespace YoungPlatformAPILib
         [JsonProperty("balanceInTrade")]
         public double BalanceInTrade { get; set; }
 
-        public WalletBalanceResponseItem()
-        {
-
-        }
     }
 }

@@ -88,6 +88,19 @@ namespace YoungPlatformAPILib
             return false;
         }
 
+        internal string GetBodyRequest(int timeout=10)
+        {
+            DateTime data = DateTime.Now;
+            var unixTime = ((DateTimeOffset)data).ToUnixTimeSeconds();
+
+            string body = "{";
+            body += @$"""timestamp"": {unixTime},";
+            body += @$"""recvWindow"": {timeout}";
+            body += "}";
+
+            return body;
+        }
+
             
      
     }
