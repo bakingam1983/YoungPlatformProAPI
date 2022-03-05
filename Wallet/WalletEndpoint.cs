@@ -12,7 +12,7 @@ namespace YoungPlatformAPILib.Wallet
     {
         public static List<WalletBalanceItem> GetWalletsBalances(APIClient cli)
         {
-            string body=cli.GetBodyRequest();
+            string body=cli.GetBodyRequestDefault();
             var cleanbody = cli.jsonToHMACBodyConverter(body);
             var hmac = cli.ComputeHMAC(cleanbody);
           

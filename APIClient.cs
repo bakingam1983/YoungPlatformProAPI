@@ -34,7 +34,7 @@ namespace YoungPlatformAPILib
             cleanedJson = cleanedJson.Replace(",", "&");
 
             //divido le chiavi e le riordino in ordine alfabetico
-            var pezzi = cleanedJson.Split("&");
+            var pezzi = cleanedJson.Split('&');
             List<string> Lista = new List<string>();
 
             for(int i = 0; i < pezzi.Length; i++)
@@ -88,20 +88,70 @@ namespace YoungPlatformAPILib
             return false;
         }
 
-        internal string GetBodyRequest(int timeout=10)
+        internal string GetBodyRequestDefault(int timeout=10)
         {
             DateTime data = DateTime.Now;
             var unixTime = ((DateTimeOffset)data).ToUnixTimeSeconds();
 
             string body = "{";
-            body += @$"""timestamp"": {unixTime},";
-            body += @$"""recvWindow"": {timeout}";
+            body += $@"""timestamp"": {unixTime},";
+            body += $@"""recvWindow"": {timeout}";            
             body += "}";
 
             return body;
         }
 
-            
-     
+        internal string GetBodyRequestPlaceOrder(string trade, string market, Orders.ESide side, Orders.EOrderType orderType, double volume,int timeout = 10)
+        {
+            DateTime data = DateTime.Now;
+            var unixTime = ((DateTimeOffset)data).ToUnixTimeSeconds();
+
+            string body = "{";
+            body += $@"""timestamp"": {unixTime},";
+            body += $@"""recvWindow"": {timeout},";           
+            body += $@"""trade"": {trade},";            
+            body += $@"""market"": {market},";
+            body += $@"""side"": {side.ToString()},";
+            body += $@"""type"": {orderType.ToString()},";
+            body += $@"""volume"": {volume.ToString(System.Globalization.CultureInfo.InvariantCulture)}";
+            body += "}";
+
+            return body;
+        }
+
+        internal string GetBodyRequestCancelOrder(Orders.ESide side, string orderID,int timeout = 10)
+        {
+            DateTime data = DateTime.Now;
+            var unixTime = ((DateTimeOffset)data).ToUnixTimeSeconds();
+
+            string body = "{";
+            body += $@"""timestamp"": {unixTime},";
+            body += $@"""recvWindow"": {timeout},";
+            body += $@"""side"": {side.ToString()},";
+            body += $@"""orderId"": {orderID}";
+            body += "}";
+
+            return body;
+        }
+
+        internal string GetBodyRequestWithdrawRequest(string currency, double amount, string address, string gauthCode, string tag, int timeout = 10)
+        {
+            DateTime data = DateTime.Now;
+            var unixTime = ((DateTimeOffset)data).ToUnixTimeSeconds();
+
+            string body = "{";
+            body += $@"""timestamp"": {unixTime},";
+            body += $@"""recvWindow"": {timeout},";
+            body += $@"""currency"": {currency},";
+            body += $@"""amount"": {amount.ToString(System.Globalization.CultureInfo.InvariantCulture)},";
+            body += $@"""address"": {address},";
+            body += $@"""gauthCode"": {gauthCode},";
+            body += $@"""tag"": {tag}";
+            body += "}";
+
+            return body;
+        }
+
+
     }
 }

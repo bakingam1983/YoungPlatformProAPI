@@ -36,7 +36,7 @@ namespace YoungPlatformAPILib.History
                 url += $"&limit={limit}";
             }
 
-            string body = cli.GetBodyRequest();
+            string body = cli.GetBodyRequestDefault();
             var cleanbody = cli.jsonToHMACBodyConverter(body);
             var hmac = cli.ComputeHMAC(cleanbody);
 
@@ -84,7 +84,7 @@ namespace YoungPlatformAPILib.History
                 url += $"&limit={limit}";
             }
 
-            string body = cli.GetBodyRequest();
+            string body = cli.GetBodyRequestDefault();
             var cleanbody = cli.jsonToHMACBodyConverter(body);
             var hmac = cli.ComputeHMAC(cleanbody);
 
@@ -132,7 +132,7 @@ namespace YoungPlatformAPILib.History
                 url += $"&limit={limit}";
             }
 
-            string body = cli.GetBodyRequest();
+            string body = cli.GetBodyRequestDefault();
             var cleanbody = cli.jsonToHMACBodyConverter(body);
             var hmac = cli.ComputeHMAC(cleanbody);
 
@@ -180,7 +180,7 @@ namespace YoungPlatformAPILib.History
                 url += $"&limit={limit}";
             }
 
-            string body = cli.GetBodyRequest();
+            string body = cli.GetBodyRequestDefault();
             var cleanbody = cli.jsonToHMACBodyConverter(body);
             var hmac = cli.ComputeHMAC(cleanbody);
 
@@ -213,7 +213,7 @@ namespace YoungPlatformAPILib.History
             string url = cli.APIEndPoint + $"orderbyid?orderId={orderId}";
 
             
-            string body = cli.GetBodyRequest();
+            string body = cli.GetBodyRequestDefault();
             var cleanbody = cli.jsonToHMACBodyConverter(body);
             var hmac = cli.ComputeHMAC(cleanbody);
 

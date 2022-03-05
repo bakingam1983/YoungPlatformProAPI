@@ -1,8 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>enable</Nullable>
+    <Authors>bakingam1983</Authors>
+    <Company>bakingam1983</Company>
+    <Description>Non official API Library for Young Platform Pro Exchange</Description>
+    <PackageProjectUrl>https://github.com/bakingam1983/YoungPlatformProAPI</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bakingam1983/YoungPlatformProAPI</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>younplatform;youngplatformpro;young;platform;crypto;exchange</PackageTags>
+    <NeutralLanguage>it-IT</NeutralLanguage>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <EnableNETAnalyzers>True</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,8 +24,13 @@
 
   <ItemGroup>
     <Folder Include="misc\" />
-    <Folder Include="Funding\" />
-    <Folder Include="Orders\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

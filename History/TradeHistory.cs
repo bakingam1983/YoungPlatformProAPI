@@ -17,10 +17,10 @@ namespace YoungPlatformAPILib.History
         public int TotalCount { get; set; }
 
         [JsonProperty("data")]
-        public List<TradeHystoryItem> Data { get; set; }
+        public List<TradeItem> Data { get; set; }
     }
 
-    public class TradeHystoryItem
+    public class TradeItem
     {
         [JsonProperty("id")]
         public int Id { get; set; }
