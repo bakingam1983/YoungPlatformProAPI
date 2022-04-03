@@ -26,7 +26,7 @@ namespace YoungPlatformAPILib.History
         public int Id { get; set; }
 
         [JsonProperty("orderID")]
-        public int OrderID { get; set; }
+        public string OrderID { get; set; }
 
         [JsonProperty("baseCurrency")]
         public string BaseCurrency { get; set; }

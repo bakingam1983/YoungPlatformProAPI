@@ -6,18 +6,24 @@ using System.Text;
 
 namespace YoungPlatformAPILib.Funding
 {
-    internal class FundingEndpoint
+    public class FundingEndpoint
     {
         public static DepositsWithdrawalsHeader GetAllDepositsWithrawals(APIClient cli, int page, int batch)
         {
             string url = cli.APIEndPoint + $"transactions?page={page}&batch={batch}";
-                       
+
+            string body = cli.GetBodyRequestDefault();
+            var cleanbody = cli.jsonToHMACBodyConverter(body);
+            var hmac = cli.ComputeHMAC(cleanbody);
+
             var client = new RestClient(url);
             client.Timeout = -1;
-            var request = new RestRequest(Method.POST);            
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "application/json");
             request.AddHeader("apiKey", cli.APIPublicKey);
-            
-                        
+            request.AddHeader("hmac", hmac);
+
+            request.AddParameter("application/json", body, ParameterType.RequestBody);
             IRestResponse response = client.Execute(request);
             //Console.WriteLine(response.Content);
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
